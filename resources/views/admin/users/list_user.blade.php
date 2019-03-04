@@ -7,6 +7,11 @@
         {{ session('status') }}
     </div>
 @endif
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 <div class="box">
 	<div class="box-body no-padding">
 		<table class="table">
@@ -16,9 +21,15 @@
 				<th>Email</th>
 				<th style="width: 120px">Action</th>
 			</tr>
+			@php 
+				$i = 1
+			@endphp
 			@foreach ($users as $key => $user)
 			<tr>
-				<td>{{$user->id}}</td>
+				<td>{{$i}}</td>
+				@php 
+					$i++ 
+				@endphp
 				<td>{{$user->name}}</td>
 				<td>{{$user->email}}</td>
 				<td>

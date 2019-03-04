@@ -4,6 +4,11 @@
 
 @section('content')
 <h1>Add user</h1>
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 <form action="{{Route('add_user')}}" method="POST" class="form-add">
 	@csrf
 	<div class="form-group">

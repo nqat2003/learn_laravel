@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\QueryException;
 
 class UserController extends Controller
 {
@@ -28,11 +29,15 @@ class UserController extends Controller
     	$email = $request->email;
     	$pass = $request->pass;
     	$pass2 = $request->pass2;
+    	if ($pass != $pass2) return redirect('add_user')->with('error','Password and Re-Password do not match!'); 
     	$password = Hash::make($pass);
-    	DB::table('users')->insert(
-    	['name' => $name, 'email' => $email, 'password' => $password]
-		);
-		return redirect('list_user')->with('status', 'Create User Sucess!');
+    	try{
+    		DB::table('users')->insert(['name' => $name, 'email' => $email, 'password' => $password]
+    		);
+    	}catch(QueryException $e){
+    		return redirect('list_user')->with('error','Email exists! Create User Failer.');
+    	}
+    	return redirect('list_user')->with('status', 'Create User Sucess!');
     }
     public function get_modify_user($id){
     	$user = DB::table('users')->where('id','=',$id)->get();
