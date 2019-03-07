@@ -4,9 +4,13 @@
 
 @section('content')
 <h1>Add user</h1>
-@if (session('error'))
+@if ($errors->any())
     <div class="alert alert-danger">
-        {{ session('error') }}
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
 @endif
 <form action="{{Route('add_user')}}" method="POST" class="form-add">
@@ -14,6 +18,7 @@
 	<div class="form-group">
 		<label for="">Name: </label>
 		<input type="text" class="form-control" id="formGroupExampleInput" name="name">
+		
 	</div>
 	<div class="form-group">
 		<label for="">Email:</label>
@@ -22,6 +27,7 @@
 	<div class="form-group">
 		<label for="">Password:</label>
 		<input type="password" class="form-control" id="formGroupExampleInput2" name="pass">
+
 	</div>
 	<div class="form-group">
 		<label for="">Re-Password:</label>

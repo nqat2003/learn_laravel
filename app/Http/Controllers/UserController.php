@@ -25,18 +25,22 @@ class UserController extends Controller
     }
     public function add_user(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|unique:users',
+            'pass' => 'required',
+            'pass2' => 'required|min:3',
+            'pass' => 'required|required_with:password_confirmation|min:3|same:pass2',
+        ]);
     	$name = $request->name;
     	$email = $request->email;
     	$pass = $request->pass;
     	$pass2 = $request->pass2;
-    	if ($pass != $pass2) return redirect('add_user')->with('error','Password and Re-Password do not match!'); 
     	$password = Hash::make($pass);
-    	try{
+    	
     		DB::table('users')->insert(['name' => $name, 'email' => $email, 'password' => $password]
     		);
-    	}catch(QueryException $e){
-    		return redirect('list_user')->with('error','Email exists! Create User Failer.');
-    	}
+    	
     	return redirect('list_user')->with('status', 'Create User Sucess!');
     }
     public function get_modify_user($id){
@@ -44,6 +48,12 @@ class UserController extends Controller
     	return view('admin.users.modify_user',['user'=>$user]);
     }
     public function do_modify_user(Request $re){
+        $re->validate([
+            'name' => 'required|max:255',
+            'email' => 'unique:users,email,'.$re->id,
+            'pass_old' => 'required',
+
+        ]);
     	$id = $re->id;
     	$name = $re->name;
     	$email = $re->email;
