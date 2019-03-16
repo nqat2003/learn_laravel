@@ -30,7 +30,7 @@
 
 	</div>
 	<div class="form-group">
-		<label for="">Re-Password:</label>
+		<label for="">Password confirm:</label>
 		<input type="password" class="form-control" id="formGroupExampleInput2" name="pass2">
 	</div>
 	<div class="text-center">

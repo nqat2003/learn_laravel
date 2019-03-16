@@ -7,6 +7,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="{{ asset('backend/css/my-style.css') }}">
   <link rel="stylesheet" href="{{ asset('backend/css/bootstrap.min.css') }}">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('backend/css/font-awesome.min.css') }}">
@@ -17,6 +18,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{ asset('backend/css/_all-skins.min.css') }}">
+
   <style type="text/css">
     h1,button{
       text-align: center;
@@ -63,9 +65,18 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
+<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 <script src="{{ asset('backend/js/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ asset('backend/js/bootstrap.min.js')}}"></script>
+
 <!-- SlimScroll -->
 <script src="{{ asset('backend/js/jquery.slimscroll.min.js')}}"></script>
 <!-- FastClick -->
@@ -74,5 +85,6 @@
 <script src="{{ asset('backend/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('backend/js/demo.js')}}"></script>
+
 </body>
 </html>

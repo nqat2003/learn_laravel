@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-@section('title','List Users')
+@section('title','List Products')
 @section('content')
-<h1>List Users</h1>
+<h1>List Products</h1>
 <div class="row">
         <div class="col-md-4 col-md-offset-3 pull-right">
-            <form action="{{Route('user_search')}}" class="search-form" method="POST">
+            <form action="{{Route('product_search')}}" class="search-form" method="POST">
             	@csrf
                 <div class="form-group has-feedback">
             		<label for="search" class="sr-only">Search</label>
@@ -24,41 +24,34 @@
 		<table class="table">
 			<tr>
 				<th style="width: 10px">Id</th>
+				<th style="width: 100px">Image</th>
 				<th>Name</th>
-				<th>Email</th>
+				<th>Price</th>
+				<th>Description</th>
 				<th style="width: 120px">Action</th>
 			</tr>
-			@php
-				$i = 1;
+			@php 
+				$i = 1
 			@endphp
-			@foreach ($users as $key => $user)
+			@foreach ($products as $key => $product)
 			<tr>
-				@php
-					if (isset($_GET['page'])){
-						$a = $_GET['page'];
-					}
-					else $a = 1;
+				<td>{{$i}}</td>
+				@php 
+					$i++ 
 				@endphp
+				<td><img src="{{asset('backend/img/'.$product->image)}}" style="width: 50px;height: 50px;"></td>
+				<td>{{$product->name}}</td>
+				<td>{{$product->price}}</td>
+				<td>{{$product->description}}</td>
 				<td>
-					{{ $i + $a * 10 - 10 }}					
-				</td>
-				@php
-					$i++
-				@endphp
-				<td>{{$user->name}}</td>
-				<td>{{$user->email}}</td>
-				<td>
-					<a href="{{Route('modify_user',['id' => $user->id])}}" class="badge bg-green">Modify</a>
-					<a href="{{Route('delete_user',['id' => $user->id])}}" class="badge bg-red">Delete</a>
+					<a href="{{Route('modify_product',['id' => $product->id])}}" class="badge bg-green">Modify</a>
+					<a href="{{Route('delete_product',['id' => $product->id])}}" class="badge bg-red">Delete</a>
 				</td>
 			</tr>
 			@endforeach
-			
-		</table>
-		<div class="d-flex justify-content-center" style="display: flex;justify-content:center;"> {{ $users->links() }}</div>
-	</div>
 
+		</table>
+	</div>
 	<!-- /.box-body -->
 </div>
-
 @endsection

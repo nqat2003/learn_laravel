@@ -39,6 +39,18 @@
         </li>
         <li class="treeview">
           <a href="#">
+            <i class="fa fa-user-md"></i> <span>Products</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{Route('list_product')}}"><i class="fa fa-list"></i> List Products</a></li>
+            <li><a href="{{Route('get_add_product')}}"><i class="fa fa-user-plus"></i> Add Product</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
             <i class="fa fa-files-o"></i>
             <span>Layout Options</span>
             <span class="pull-right-container">

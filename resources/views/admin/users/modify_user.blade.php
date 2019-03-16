@@ -26,8 +26,8 @@
 		<input type="email" class="form-control" id="formGroupExampleInput2" name="email" value="{{$data_user->email}}">
 	</div>
 	<div class="form-group">
-		<label for="">Old password:</label>
-		<input type="password" class="form-control" id="formGroupExampleInput2" name="pass_old" >
+		<label for="">New password:</label>
+		<input type="password" class="form-control" id="formGroupExampleInput2" name="pass" placeholder="Let blank if not change">
 	</div>
 	@endforeach
 	<div class="text-center">
